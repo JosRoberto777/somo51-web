@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Enlace Comercial | Puebla</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a2a6c;
+            --secondary: #b21f1f;
+            --accent: #fdbb2d;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+        }
+
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            margin: 0; background: var(--light); color: var(--dark); 
+            line-height: 1.6;
+        }
+
+        /* --- MODAL DE PRIVACIDAD --- */
+        #privacy-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); display: flex; align-items: center; 
+            justify-content: center; z-index: 9999;
+        }
+        .privacy-box {
+            background: white; padding: 40px; border-radius: 15px; max-width: 600px; 
+            width: 90%; text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .privacy-scroll {
+            height: 200px; overflow-y: scroll; background: #f1f1f1; 
+            padding: 15px; border-radius: 5px; font-size: 0.85em; margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+        .btn-accept {
+            background: var(--primary); color: white; border: none; 
+            padding: 12px 30px; border-radius: 25px; cursor: pointer; 
+            width: 100%; font-weight: bold; transition: 0.3s;
+        }
+        .btn-accept:hover { background: var(--secondary); }
+
+        /* --- HEADER --- */
+        nav {
+            background: white; padding: 15px 50px; display: flex; 
+            justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-weight: 900; font-size: 1.5rem; color: var(--primary); }
+        .logo span { color: var(--secondary); }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; padding: 80px 20px; text-align: center;
+        }
+        .region-card {
+            background: rgba(255,255,255,0.1); display: inline-block;
+            padding: 20px; border-radius: 15px; backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        select {
+            padding: 12px; border-radius: 8px; border: none; width: 280px;
+            font-size: 1rem; margin-top: 15px; cursor: pointer;
+        }
+
+        /* --- CONTENIDO --- */
+        .section-title { text-align: center; margin: 50px 0 30px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .section-title div { height: 4px; width: 60px; background: var(--accent); margin: 0 auto; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; margin-bottom: 80px;
+        }
+
+        .card {
+            background: white; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.4s;
+            border: 1px solid #eee; position: relative;
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+        
+        .card-img { 
+            height: 200px; background: #e9ecef; position: relative;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .badge {
+            position: absolute; top: 15px; left: 15px; background: var(--accent);
+            color: #000; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.75rem;
+            z-index: 10;
+        }
+
+        .card-body { padding: 25px; }
+        .card-body h3 { margin: 0 0 10px; font-size: 1.4rem; }
+        .card-body p { color: #666; font-size: 0.95rem; margin-bottom: 20px; }
+
+        .btn-interest {
+            display: block; width: 100%; text-align: center; background: var(--primary);
+            color: white; padding: 12px; border-radius: 10px; text-decoration: none;
+            font-weight: bold; transition: 0.3s; border: none; cursor: pointer;
+        }
+        .btn-interest:hover { background: #000; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #111; color: #fff; padding: 80px 0 20px; margin-top: 100px;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px; margin-bottom: 50px;
+        }
+        .footer-col h4 { color: var(--accent); margin-bottom: 20px; text-transform: uppercase; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 10px; color: #bbb; cursor: pointer; }
+        .footer-col ul li:hover { color: white; }
+
+        .bottom-bar {
+            border-top: 1px solid #333; padding-top: 20px; text-align: center;
+            font-size: 0.8rem; color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="privacy-overlay">
+        <div class="privacy-box">
+            <h2 style="margin-top:0"><i class="fas fa-user-shield"></i> Validación de Seguridad</h2>
+            <p>Para acceder al catálogo de convenios del estado de Puebla, por favor lea y acepte nuestro aviso de privacidad simplificado:</p>
+            <div class="privacy-scroll">
+                <strong>1. Responsable del tratamiento:</strong> El Sistema de Enlace Comercial Puebla actúa como intermediario.<br><br>
+                <strong>2. Finalidad:</strong> Sus datos serán utilizados únicamente para vincular su interés de compra con los proveedores autorizados (Liverpool, Sears, etc.) bajo esquemas de contrato docente o administrativo.<br><br>
+                <strong>3. Notificaciones:</strong> Al dar clic en "Me Interesa", se generará un folio de seguimiento que será enviado a la dirección general para su validación manual.<br><br>
+                <strong>4. Ubicación:</strong> Este servicio es exclusivo para residentes y trabajadores en el estado de Puebla y sus diversas regiones.
+            </div>
+            <button class="btn-accept" onclick="document.getElementById('privacy-overlay').style.display='none'">ACEPTAR Y ENTRAR AL SITIO</button>
+        </div>
+    </div>
+
+    <nav>
+        <div class="logo">ENLACE<span>PUEBLA</span></div>
+        <div style="color: #666; font-size: 0.9rem;">
+            <i class="fas fa-user-circle"></i> Mi Perfil | <i class="fas fa-file-contract"></i> Mis Trámites
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Catálogo Institucional de Convenios</h1>
+        <p>Accede a beneficios exclusivos por contrato en tu localidad.</p>
+        <div class="region-card">
+            <label><i class="fas fa-map-marker-alt"></i> SELECCIONA TU REGIÓN:</label><br>
+            <select onchange="updateRegion(this.value)">
+                <option value="">-- Buscar Localidad --</option>
+                <option value="Angelópolis">Angelópolis / Puebla Centro</option>
+                <option value="Cholula">San Andrés / San Pedro Cholula</option>
+                <option value="Atlixco">Atlixco / Valle</option>
+                <option value="Sierra">Sierra Norte / Huauchinango</option>
+                <option value="Tehuacán">Tehuacán y Región</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section-title">
+            <h2 id="region-title">Productos Destacados</h2>
+            <div></div>
+            <p style="margin-top:15px; color:#888;">Mostrando 6 de 54 convenios activos para tu perfil.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-img">
+                    <img src="Imagenes/laptop.jpg" alt="Laptop Pro Liverpool">
+                    <div class="badge">NUEVO CONVENIO</div>
+                </div>
+                <div class="card-body">
+                    <span style="color:var(--secondary); font-weight:bold;">LIVERPOOL MÉXICO</span>
+                    <h3>Laptops para Docentes</h3>
+                    <p>Financiamiento vía nómina con tasa preferencial del 0%. Sujeto a contrato regional.</p>
+                    <button class="btn-interest" onclick="alert('Solicitud enviada. El Jefe revisará tu perfil y se contactará para la firma del contrato.')">ME INTERESA</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="Imagenes/laptop2.webp" alt="Laptop Sears">
+                </div>
+                <div class="card-body">
+                    <span style="color:var(--secondary); font-weight:bold;">SEARS</span>
+                    <h3>Línea Blanca Pro</h3>
+                    <p>Equipamiento para hogar. Entrega inmediata en Cholula y Puebla Centro bajo validación de ID.</p>
+                    <button class="btn-interest" onclick="confirm('¿Deseas enviar tus datos para este convenio?')">ME INTERESA</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://via.placeholder.com/400x200?text=TIENDAS+3B" alt="Product">
+                    <div class="badge">POPULAR</div>
+                </div>
+                <div class="card-body">
+                    <span style="color:var(--secondary); font-weight:bold;">TIENDAS 3B</span>
+                    <h3>Paquete de Canasta Básica</h3>
+                    <p>Descuento directo en caja presentando código QR generado por esta plataforma.</p>
+                    <button class="btn-interest">ME INTERESA</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="color:white">ENLACE<span>PUEBLA</span></div>
+                    <p style="color:#777; font-size: 0.9rem; margin-top:20px;">
+                        Plataforma líder en gestión de convenios interinstitucionales operada por P&R TABU S.A. de C.V.[cite: 11, 248]. 
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li>Inicio</li>
+                        <li>Cómo funciona</li>
+                        <li>Proveedores</li>
+                        <li>Preguntas Frecuentes</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Regiones</h4>
+                    <ul>
+                        <li>Centro / Angelópolis</li>
+                        <li>Cholula</li>
+                        <li>Atlixco</li>
+                        <li>Sierra Norte</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li>Aviso de Privacidad</li>
+                        <li>Términos y Condiciones</li>
+                        <li>Contacto Jefe Directo</li>
+                        <li>WhatsApp Soporte</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-bar">
+                &copy; 2026 Somos51.com. Proyecto para los 56,000 agremiados del SNTE Sección 51[cite: 16, 51]. <br>
+                Desarrollado para la gestión eficiente de contratos con pago vía descuento de nómina[cite: 17, 120].
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateRegion(val) {
+            if(val) {
+                document.getElementById('region-title').innerText = "Convenios en: " + val;
+                console.log("Cambiando BD a región: " + val);
+            }
+        }
+    </script>
+</body>
+</html>
